@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List of users</title>
+    <style>
+        table {
+            width: 10%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 18px;
+            text-align: center;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid black;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+<h2>List of Users</h2>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${users}" th:if="${user != null and user.getName() != null}">
+        <td th:text="${user.getId()}"></td>
+        <td>
+            <a th:href="@{/users/show(id=${user.getId()})}" th:text="${user.getName()}"></a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<hr/>
+
+<a th:href="@{/users/new}">Create new user</a>
+
+</body>
+</html>
